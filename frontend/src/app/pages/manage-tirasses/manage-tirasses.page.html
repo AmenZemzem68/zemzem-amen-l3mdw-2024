@@ -1,0 +1,52 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/terrace.png"></ion-img>
+      <h4 class="ion-no-margin">Terraces
+      </h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+  <ion-grid>
+    <!-- Tirasses Table -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="terraces">
+          <ion-card-header>
+            <ion-card-title>Terraces</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div>{{tirasses.length}}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="terraces">
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-header>
+                <ion-card-title>Terraces<ion-icon name="add-outline" (click)="openTirasseModal()"></ion-icon></ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="4">
+              <ion-searchbar [(ngModel)]="tirasseSearchTerm" (ionInput)="filterTirasses()"></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <ng-container *ngIf="filteredTirasses.length > 0; else noTirasses">
+              <app-reusable-table [data]="filteredTirasses" [columns]="tirasseColumns" [actions]="true" (delete)="onDeleteTirasse($event)" (edit)="onEditTirasse($event)"></app-reusable-table>
+            </ng-container>
+            <ng-template #noTirasses>
+              <p>No tirasses found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

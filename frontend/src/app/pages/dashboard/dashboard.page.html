@@ -1,0 +1,73 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/dashboard.png"></ion-img>
+      <h4 class="ion-no-margin">Dashborad
+      </h4>
+    </div>
+    <div id="avatar">
+      <ion-img src={{photoUrl}}></ion-img>
+    </div>
+  </div>
+  <ion-grid>
+    <!-- Agents Table -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="orders">
+          <ion-card-header>
+            <ion-card-title>Past Days Orders</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="orders">
+          <ion-card-header>
+            <ion-card-title>Orders Of The Day</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div>{{commandes.length}}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="orders">
+          <ion-card-header>
+            <ion-card-title>Recipe Of The Day</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div>203 DT</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="orders">
+          <ion-row>
+            <ion-col>
+              <ion-card-header>
+                <ion-card-title>Orders</ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="4">
+              <ion-searchbar [(ngModel)]="commandesearchTerm" (ionInput)="filtercommandes()"></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <ng-container *ngIf="filteredcommandes.length > 0; else noClients">
+              <app-reusable-table [data]="filteredcommandes" [columns]="commandeColumns" [actions]="false"></app-reusable-table>
+            </ng-container>
+            <ng-template #noClients>
+              <p>No clients found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

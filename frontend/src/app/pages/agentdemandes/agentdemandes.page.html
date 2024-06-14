@@ -1,0 +1,31 @@
+<ion-content id="main-content" class="ion-padding">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/food.png"></ion-img>
+      <h4 class="ion-no-margin">All demandes</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let demande of demandes" lines="none">
+      <ion-grid>
+        <ion-row>
+            <ion-col>
+              <span>Table: {{ demande.table?.numero }}</span>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span>Message: {{ demande.message }}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-button (click)="deleteDemande(demande.id)"><ion-icon name="checkmark-outline"></ion-icon></ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

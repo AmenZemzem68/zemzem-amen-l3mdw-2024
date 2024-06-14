@@ -1,0 +1,5 @@
+/* In your vertical-chart.component.scss or a global styles file */
+:host ::ng-deep ngx-charts-bar-vertical .bar {
+    animation: none !important;
+  }
+  

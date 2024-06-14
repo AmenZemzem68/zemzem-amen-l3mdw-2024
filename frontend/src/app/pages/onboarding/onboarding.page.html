@@ -1,0 +1,24 @@
+<ion-content class="ion-padding">
+  <div class="image-container">
+    <ion-img src="../../../assets/logo.jpg"></ion-img>
+  </div>
+  <div class="message-container">
+    <h1>Get the <span class="text-warning">best</span><br>Meals & Fast Food<br><span class="text-danger">in Town</span></h1>
+  </div>
+  <div>
+    <ion-button expand="block" routerLink="/login" class="ion-margin-bottom">Login</ion-button>
+    <ion-button expand="block" routerLink="/register" fill="outline">Register</ion-button>
+  </div>
+  <div class="social-login-container">
+    <p>Or login with</p>
+    <div class="socials">
+      <div class="social-icon">
+        <ion-img src="../../../assets/google.png" (click)="signIn()"></ion-img>
+      </div>
+      <div class="social-icon">
+        <ion-img src="../../../assets/facebook.png" (click)="facebookLogin()"></ion-img>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>

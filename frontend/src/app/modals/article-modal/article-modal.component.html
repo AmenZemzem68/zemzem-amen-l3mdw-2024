@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ modalTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="articleForm" (ngSubmit)="onAddOrUpdateArticle()" style="padding: 50px 20px;">
+    <div class="form-field">
+      <ion-img src="../../assets/product-development.png"></ion-img>
+      <ion-input formControlName="libelle" placeholder="Libelle"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/tag.png"></ion-img>
+      <ion-input formControlName="prixVente" placeholder="Price"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/policy.png"></ion-img>
+      <ion-input formControlName="description" placeholder="Description"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/gallery.png"></ion-img>
+      <ion-label>Upload Photo</ion-label>
+      <input type="file" (change)="onFileChange($event)">
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/category.png"></ion-img>
+      <ion-select formControlName="idFamille" placeholder="Select Famille">
+        <ion-select-option *ngFor="let famille of familleArticles" [value]="famille.id" placeholder="Category">
+          {{ famille.libelle }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <ion-button type="submit" expand="block">{{ buttonTitle }}</ion-button>
+  </form>
+</ion-content>

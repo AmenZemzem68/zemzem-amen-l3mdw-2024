@@ -1,0 +1,66 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/food.png"></ion-img>
+      <h4 class="ion-no-margin">All orders</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+
+  <ion-item *ngFor="let commande of commandes" lines="none" >
+    <ion-grid>
+      <ion-row (click)="openModal(commande)">
+        <ion-col>
+          <span>{{ commande.dateCommande | date: 'short' }}</span>
+        </ion-col>
+        <ion-col class="ion-text-right">
+          <span>Total: {{ commande.prixTotal | number }} DT</span>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openModal(commande)">
+        <ion-col>
+          <span>Table : {{ commande?.table?.numero }}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openModal(commande)">
+        <ion-col>
+          <span>Order: {{ commande.id }}</span>
+        </ion-col>
+       
+        <ion-col class="ion-text-right">
+          <ion-badge [ngClass]="getEtatClass(commande.etat)">{{ commande.etat }}</ion-badge>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-button *ngIf="commande.etat !== 'ready' && commande.etat !== 'removed'" (click)="confirmCommande(commande.id)">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" *ngIf="commande.etat !== 'ready' && commande.etat !== 'removed'" (click)="cancelCommande(commande.id)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()">
+    <ng-template>
+      <div class="command-item receipt">
+        <div class="receipt-title-bar">
+          <h2 class="receipt-title">Restau App</h2>
+          <ion-icon name="close-outline" class="delete-icon" (click)="closeModal()" color="dark"></ion-icon>
+        </div>
+        <p class="receipt-info">Table: {{ commande?.table?.numero }}</p>
+        <p class="receipt-info">Command ID: {{ commande?.id }} // Date: {{ commande?.dateCommande | date: 'short' }}</p>
+        <hr class="receipt-divider">
+        <div *ngFor="let line of commande?.lignesCommande">
+          <div class="item">{{ line?.quantite }}x {{ line?.article?.libelle }} at {{ line?.prixUnitaire | number }} DT -- "{{ line?.note }}"</div>
+        </div>
+        <hr class="receipt-divider">
+        <div class="total">Total: {{ commande?.prixTotal | number }} DT</div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

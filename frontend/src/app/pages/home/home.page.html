@@ -1,0 +1,144 @@
+<ion-content class="ion-padding" id="main-content" >
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/adress.png"></ion-img>
+      <h4 class="ion-no-margin">{{adresse}}</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+
+  
+  <ion-searchbar (ionInput)="filterProducts($event)"></ion-searchbar>
+  <div id="banner" style="margin: 10px 0;">
+    <swiper-container [initialSlide]="0" [spaceBetween]="0" [slidesPerView]="1" [slidesOffsetBefore]="0" [autoplay]="{delay: 5000}">
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner6.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner8.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner5.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner7.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner4.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner">
+          <ion-img src="../../assets/banner9.jpg"></ion-img>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div *ngIf="currentCommande">
+    <div class="list-title">
+      <h3 class="title">Current Order</h3>
+    </div>
+    <div class="command-list">
+      <div class="command-item receipt">
+        <div class="receipt-title-bar">
+          <h2 class="receipt-title">Restau App</h2>
+          <ion-icon name="close-outline" class="delete-icon" (click)="onDelete()"
+            color="dark"></ion-icon>
+        </div>
+        <p class="receipt-info">Djerba, Midoun</p>
+        <p class="receipt-info">{{this.prenom }} {{this.nom}} // Table : {{currentCommande?.idTable}}</p>
+        <p class="receipt-info"> Date: {{ currentCommande?.dateCommande | date:
+          'short' }}</p>
+        <hr class="receipt-divider">
+        <div *ngFor="let line of currentCommande.lignesCommande">
+          <div class="item">
+            {{ line?.quantite }}x {{ getLibelle(line?.idArticle) }} - {{ line?.prixUnitaire }} DT
+            <ion-icon name="remove-circle-outline" color="primary" (click)="decreaseQuantity(line)" style="width: 20px; height: 20px;"></ion-icon>
+            <ion-icon name="add-circle-outline" color="primary" (click)="increaseQuantity(line)" style="width: 20px; height: 20px;"></ion-icon>
+
+            <ion-input [(ngModel)]="line.note" placeholder="Add a note"></ion-input>
+          </div>
+        </div>
+        <hr class="receipt-divider">
+        <div class="total">Total: {{calculateTotal()}} DT<ion-icon name="checkmark-outline" color="primary"
+            (click)="confirmCommande()" class="delete-icon" style="padding-left: 300px;"></ion-icon></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-title">
+    <h3 class="title">Categories</h3>
+    <div class="form-field">
+      <ion-img src="../../assets/table (1).png"></ion-img>
+      <ion-select (ionChange)="onTableSelect($event)" placeholder="Select Table">
+        <ion-select-option *ngFor="let table of tables" [value]="table.id" placeholder="Table">
+          Table{{ table.numero}}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <swiper-container [initialSlide]="0" [spaceBetween]="0" [slidesPerView]="slidesPerView" [slidesOffsetBefore]="0">
+    <swiper-slide *ngFor="let category of categories" (click)="filterProductsByCategory(category)">
+      <app-category-item [item]="category" [isActive]="category.id === activeCategoryId"></app-category-item>
+    </swiper-slide>
+  </swiper-container>
+
+
+  <div class="list-title">
+    <h3 class="title">Products</h3>
+  </div>
+  <div class="product-list">
+    <app-product-card *ngFor="let item of filteredProducts" [item]="item" (productClick)="openProductModal(item)"
+      (productAdded)="addProductToCommand($event)"></app-product-card>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button style="display: flex; align-items: center; justify-content: center;" >
+      <ion-icon name="add-outline" style="width: 400%; height: 40%; margin: auto; color: white;"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button style="display: flex; align-items: center; justify-content: center;" data-desc="New order"
+        (click)="addNewCommand()" *ngIf="!currentCommande">
+        <ion-img src="../../assets/add.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button style="display: flex; align-items: center; justify-content: center;" data-desc="Invoice" (click)="sendDemande('The invoice please')">
+        <ion-img src="../../assets/invoice.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button style="display: flex; align-items: center; justify-content: center;" data-desc="Clean" (click)="sendDemande('Clean the table please')">
+        <ion-img src="../../assets/clean.png"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button style="display: flex; align-items: center; justify-content: center;" data-desc="Salt" (click)="sendDemande('Some salt please')">
+        <ion-img src="../../assets/salt.png"></ion-img>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="modal-content">
+        <div class="modal-header">
+          <ion-img [src]="'data:image/jpeg;base64,' + selectedProduct?.image"></ion-img>
+          <div class="modal-details">
+            <h2 class="modal-libelle">{{ selectedProduct?.libelle }}</h2>
+            <p class="modal-price">{{ selectedProduct?.prixVente }} DT</p>
+          </div>
+        </div>
+        <p class="modal-description">{{ selectedProduct?.description }}</p>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

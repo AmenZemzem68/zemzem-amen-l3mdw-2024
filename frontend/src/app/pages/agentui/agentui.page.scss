@@ -1,0 +1,36 @@
+ion-avatar {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+  }
+  
+  ion-card {
+    margin-top: 20px;
+  }
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  #location {
+    display: flex;
+    align-items: center;
+  }
+  
+  #location ion-img {
+    color: var(--ion-color-primary);
+    font-size: 1.2rem;
+    margin-right: 5px;
+  }
+  
+  #avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  

@@ -1,0 +1,106 @@
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#location {
+  display: flex;
+  align-items: center;
+}
+
+#location ion-img {
+  color: var(--ion-color-primary);
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+#avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+ion-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  margin: 8px 0;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ion-grid {
+  width: 100%;
+}
+
+.ion-text-right {
+  text-align: right;
+}
+
+ion-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.etat-warning {
+  --background: #ffcc00;
+  --color: #000;
+}
+
+.etat-success {
+  --background: #28a745;
+  --color: #fff;
+}
+
+.etat-danger {
+  --background: #dc3545;
+  --color: #fff;
+}
+
+.receipt {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.receipt-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1px dashed #000;
+  margin: 10px 0;
+}
+
+.receipt-info,
+.item,
+.total {
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+.receipt-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+}

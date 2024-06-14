@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{modalTitle}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="tableForm" (ngSubmit)="onAddOrUpdateTable()" style="padding: 50px 20px;">
+    <div class="form-field">
+      <ion-img src="../../assets/table-number.png"></ion-img>
+      <ion-input formControlName="numero" type="text" placeholder="Numero"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/terrace.png"></ion-img>
+      <ion-select formControlName="idTirasse" placeholder="Select Tirasse">
+        <ion-select-option *ngFor="let tirasse of tirasses" [value]="tirasse.id">
+          {{ tirasse.nom }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <ion-button type="submit" expand="block">{{buttonTitle}}</ion-button>
+  </form>
+</ion-content>

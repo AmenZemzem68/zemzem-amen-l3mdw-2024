@@ -1,0 +1,61 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <h4 class="ion-no-margin">Profile</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+
+  <img [src]="photoUrl" class="center" />
+  <h3 class="ion-text-center">{{prenom}} {{nom}}</h3>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label slot="start">Adresse</ion-label>
+      <p slot="end">{{adresse}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start">Email</ion-label>
+      <p slot="end">{{email}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label slot="start">Phone</ion-label>
+      <p slot="end">{{telephone}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button id="open-modal">
+      <ion-icon name="pencil" style="width: 400%; height: 40%; margin: auto;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal trigger="open-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.25, 0.5, 0.75,1]">
+    <ng-template>
+      <div>
+        <form (ngSubmit)="editUserData()">
+          <div class="form-field">
+            <ion-img src="../../assets/profile.png"></ion-img>
+            <ion-input [(ngModel)]="updatedUser.nom" name="nom" placeholder="Name"></ion-input>
+          </div>
+          <div class="form-field">
+            <ion-img src="../../assets/profile.png"></ion-img>
+            <ion-input [(ngModel)]="updatedUser.prenom" name="prenom" placeholder="Prename"></ion-input>
+          </div>
+          <div class="form-field">
+            <ion-img src="../../assets/email.png"></ion-img>
+            <ion-input [(ngModel)]="updatedUser.email" name="email" placeholder="Email Address"></ion-input>
+          </div>
+          <div class="form-field">
+            <ion-img src="../../assets/telephone.png"></ion-img>
+            <ion-input [(ngModel)]="updatedUser.telephone" name="telephone" placeholder="Phone"></ion-input>
+          </div>
+          <ion-button expand="block" type="submit">Confirm</ion-button>
+        </form>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

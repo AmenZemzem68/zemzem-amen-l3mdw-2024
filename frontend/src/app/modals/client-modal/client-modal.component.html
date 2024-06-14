@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Client</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="clientForm" (ngSubmit)="onUpdate()" style="padding: 50px 20px;">
+    <div class="form-field">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <ion-input formControlName="prenom" placeholder="Prename"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <ion-input formControlName="nom" placeholder="Name"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/email.png"></ion-img>
+      <ion-input formControlName="email" placeholder="Email Address"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/telephone.png"></ion-img>
+      <ion-input formControlName="telephone" placeholder="Phone Number"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/adress.png"></ion-img>
+      <ion-input formControlName="adresse" placeholder="Address"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/gallery.png"></ion-img>
+      <ion-label>Upload Photo</ion-label>
+      <input type="file" (change)="onFileChange($event)">
+    </div>
+    <ion-button type="submit" expand="block">Update Client</ion-button>
+  </form>
+</ion-content>

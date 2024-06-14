@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\PFE\PfeApi\PfeApi\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-06-08T23:30:12.0190044Z;True|2024-05-21T09:38:59.2709127+01:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SqlServerConnection">
+      <Value>Data Source=4M3N\SQLEXPRESS%3b Initial Catalog=GestionRestoDB%3b Integrated Security=True%3b TrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

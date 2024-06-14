@@ -1,0 +1,48 @@
+@media only screen and (max-width: 600px) {
+    ion-card{
+        box-shadow: none;
+        margin: 20px 0;
+    }
+    #image{
+        height: 60px;
+        width: 75px;
+        background-position: center !important;
+        background-size: cover !important;
+        border: 2px solid #53b175;
+        border-radius: 10px;
+    
+        ion-img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    
+    ion-card-header{
+        padding: 10px 5px 10px 0;
+    
+        ion-card-title{
+            font-size: 0.7rem;
+        }
+    }
+  }
+
+  .active ion-img {
+    background-color: #53b1754a;
+  }
+  @media only screen and (min-width: 600px) {
+    ion-card{
+        box-shadow: none;
+    }
+    #image{
+        background-position: center !important;
+        background-size: cover !important;
+        border: 2px solid #53b175;
+        border-radius: 10px;
+    
+        ion-img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+  }

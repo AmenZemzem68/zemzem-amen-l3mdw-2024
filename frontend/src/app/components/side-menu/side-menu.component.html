@@ -1,0 +1,81 @@
+<ion-menu menuId="main-menu" contentId="main-content">
+
+  <ion-content>
+    <div class="menu-header-bg"></div>
+    <div class="header-content">
+      <img [src]="photoUrl" alt="">
+      <ion-label>
+        <h2>{{prenom}} {{nom}}</h2>
+        <p>{{role}}</p>
+      </ion-label>
+    </div>
+
+    <ion-list class="menu-items" lines="none">
+      <div *ngIf="isAdmin">
+        <ion-item (click)="navigateTo('dashboard')" [class.active]="activeItem === 'dashboard'">
+          <ion-img src="../../assets/dashboard.png"></ion-img>
+          Dashboard
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-agents')" [class.active]="activeItem === 'manage-agents'">
+          <ion-img src="../../assets/waiter.png"></ion-img>
+          Agents List
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-clients')" [class.active]="activeItem === 'manage-clients'">
+          <ion-img src="../../assets/client.png"></ion-img>
+          Clients List
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-articles')"[class.active]="activeItem === 'manage-articles'">
+          <ion-img src="../../assets/fast-food.png"></ion-img>
+          Products List
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-famille')" [class.active]="activeItem === 'manage-famille'">
+          <ion-img src="../../assets/burgerr.png"></ion-img>
+          Categories List
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-tables')" [class.active]="activeItem === 'manage-tables'">
+          <ion-img src="../../assets/table (1).png"></ion-img>
+          Tables List
+        </ion-item>
+        <ion-item (click)="navigateTo('manage-tirasses')" [class.active]="activeItem === 'manage-tirasses'">
+          <ion-img src="../../assets/terrace.png"></ion-img>
+          Terraces List
+        </ion-item>
+      </div>
+      <div *ngIf="isAgent">
+        <ion-item (click)="navigateTo('agentui')" [class.active]="activeItem === 'agentui'">
+        <ion-img src="../../assets/profile.png"></ion-img>
+        Profile
+        </ion-item>
+        <ion-item (click)="navigateTo('agentcommandes')" [class.active]="activeItem === 'agentcommandes'">
+          <ion-img src="../../assets/food.png"></ion-img>
+          View orders
+        </ion-item>
+        <ion-item (click)="navigateTo('agentdemandes')" [class.active]="activeItem === 'agentdemandes'">
+          <ion-img src="../../assets/food.png"></ion-img>
+          View Demandes
+        </ion-item>
+      </div>
+      <div *ngIf="isClient">
+        <ion-item (click)="navigateTo('profil')" [class.active]="activeItem === 'profil'">
+          <ion-img src="../../assets/profile.png"></ion-img>
+          Profile
+        </ion-item>
+
+        <ion-item (click)="navigateTo('home')" [class.active]="activeItem === 'home'">
+          <ion-img src="../../assets/menu.png"></ion-img>
+          Menu
+        </ion-item>
+
+        <ion-item (click)="navigateTo('listcommandes')" [class.active]="activeItem === 'listcommandes'">
+          <ion-img src="../../assets/food.png"></ion-img>
+          View All Orders
+        </ion-item>
+      </div>
+
+      <ion-item (click)="logout()">
+        <ion-img src="../../assets/logout.png"></ion-img>
+        Sign out
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

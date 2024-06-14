@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <h4 class="ion-no-margin">Agent</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agent Information</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-avatar style="margin: auto;">
+        <ion-img [src]="photoUrl"></ion-img>
+      </ion-avatar>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>{{ nom }} {{ prenom }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label>{{ email }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="call-outline" slot="start"></ion-icon>
+          <ion-label>{{ telephone }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="location-outline" slot="start"></ion-icon>
+          <ion-label>{{ adresse }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

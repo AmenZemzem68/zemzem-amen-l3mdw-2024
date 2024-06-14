@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/onboarding"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="header">
+    <h1>Login</h1>
+    <p>Use your email and password to login</p>
+  </div>
+  <form [formGroup]="credentials" (ngSubmit)="onLogin()">
+    <div class="form-field">
+      <ion-img src="../../assets/email.png"></ion-img>
+      <ion-input formControlName="email" placeholder="Email Address"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/padlock.png"></ion-img>
+      <ion-input formControlName="password" type="{{passwordType}}" placeholder="Password"></ion-input>
+      <ion-icon name="{{passwordIcon}}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+    </div>
+    <ion-button expand="block" type="submit" [disabled]="isLoading">Login</ion-button>
+
+    <div class="forgot-password">
+      <a routerLink="/forgot-password">Forgot Password ?</a>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/fast-food.png"></ion-img>
+      <h4 class="ion-no-margin">Products
+      </h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+  <ion-grid>
+
+    <!-- Articles Table -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="products">
+          <ion-card-header>
+            <ion-card-title>Products</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div>{{articles.length}}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="products">
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-header>
+                <ion-card-title>Articles<ion-icon name="add-outline" (click)="openArticleModal()"></ion-icon></ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="4">
+              <ion-searchbar [(ngModel)]="articleSearchTerm" (ionInput)="filterArticles()"></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <ng-container *ngIf="filteredArticles.length > 0; else noArticles">
+              <app-reusable-table [data]="filteredArticles" [columns]="articleColumns" [actions]="true" (delete)="onDeleteArticle($event)" (edit)="onEditArticle($event)"></app-reusable-table>
+            </ng-container>
+            <ng-template #noArticles>
+              <p>No articles found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

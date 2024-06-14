@@ -1,0 +1,16 @@
+<ion-card >
+  <div class="image-container">
+    <ion-img [src]="'data:image/jpeg;base64,' + item.image" style="padding: 10px;" (click)="onCardClick()"></ion-img>
+  </div>
+  <ion-card-header>
+    <ion-card-title>{{item.libelle}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <h2>{{item.prixVente}} DT</h2>
+    <ion-buttons>
+      <ion-button style="background: #53b175;" (click)="addToCommand()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card-content>
+</ion-card>

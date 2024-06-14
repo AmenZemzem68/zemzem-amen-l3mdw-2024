@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ modalTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSignUp()" style="padding: 50px 20px;">
+    <div class="form-field">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <ion-input formControlName="prenom" placeholder="Prename"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/profile.png"></ion-img>
+      <ion-input formControlName="nom" placeholder="Name"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/email.png"></ion-img>
+      <ion-input formControlName="email" placeholder="Email Address"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/telephone.png"></ion-img>
+      <ion-input formControlName="telephone" placeholder="Phone Number"></ion-input>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/adress.png"></ion-img>
+      <ion-input formControlName="adresse" placeholder="Address"></ion-input>
+    </div>
+    <div *ngIf="!isEditMode" class="form-field">
+      <ion-img src="../../assets/padlock.png"></ion-img>
+      <ion-input formControlName="motDePasse" [type]="passwordType" placeholder="Password"></ion-input>
+      <ion-icon name="{{ passwordIcon }}" slot="end" (click)="togglePasswordVisibility('password')"></ion-icon>
+    </div>
+    <div *ngIf="!isEditMode" class="form-field">
+      <ion-img src="../../assets/padlock.png"></ion-img>
+      <ion-input formControlName="confirmPassword" [type]="confirmPasswordType" placeholder="Confirm Password"></ion-input>
+      <ion-icon name="{{ confirmPasswordIcon }}" slot="end" (click)="togglePasswordVisibility('confirmPassword')"></ion-icon>
+    </div>
+    <div class="form-field">
+      <ion-img src="../../assets/terrace.png"></ion-img>
+      <ion-select formControlName="idTirasse" placeholder="Select Tirasse">
+        <ion-select-option *ngFor="let tirasse of tirasses" [value]="tirasse.id">
+          {{ tirasse.nom }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <div  class="form-field">
+      <ion-img src="../../assets/gallery.png"></ion-img>
+      <ion-label>Upload Photo</ion-label>
+      <input type="file" (change)="onFileChange($event)">
+    </div>
+    <ion-button type="submit" expand="block">{{ buttonTitle }}</ion-button>
+  </form>
+</ion-content>

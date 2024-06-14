@@ -1,0 +1,52 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/table (1).png"></ion-img>
+      <h4 class="ion-no-margin">Tables
+      </h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+  <ion-grid>
+    <!-- Tables Table -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="tables">
+          <ion-card-header>
+            <ion-card-title>Tables</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div>{{tables.length}}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="tables">
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-header>
+                <ion-card-title>Tables<ion-icon name="add-outline" (click)="openTableModal()"></ion-icon></ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="4">
+              <ion-searchbar [(ngModel)]="tableSearchTerm" (ionInput)="filterTables()"></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <ng-container *ngIf="filteredTables.length > 0; else noTables">
+              <app-reusable-table [data]="filteredTables" [columns]="tableColumns" [actions]="true" (delete)="onDeleteTable($event)" (edit)="onEditTable($event)"></app-reusable-table>
+            </ng-container>
+            <ng-template #noTables>
+              <p>No tables found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,24 @@
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{ column.title }}</th>
+      <th *ngIf="actions">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let column of columns">
+        <ng-container *ngIf="column.key === 'image'; else textCell">
+          <img src="data:image/jpeg;base64,{{ item[column.key] }}" alt="{{ column.title }}" style="width: 30px; height: auto; border-radius: 50%;">
+        </ng-container>
+        <ng-template #textCell>
+          {{ getNestedValue(item, column.key) }}
+        </ng-template>
+      </td>
+      <td *ngIf="actions">
+        <ion-button size="small" color="danger" (click)="onDelete(item)"><ion-icon name="trash"></ion-icon></ion-button>
+        <ion-button size="small" color="primary" (click)="onEdit(item)"><ion-icon name="pencil"></ion-icon></ion-button>
+      </td>
+    </tr>
+  </tbody>
+</table>

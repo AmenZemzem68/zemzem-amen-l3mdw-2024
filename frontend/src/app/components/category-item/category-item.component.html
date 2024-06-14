@@ -1,0 +1,8 @@
+<ion-card>
+  <div id="image" [ngClass]="{ 'active': isActive }">
+    <ion-img [src]="item.image ? 'data:image/jpeg;base64,' + item.image : defaultImage" style="padding: 10px;"></ion-img>
+  </div>
+  <ion-card-header style="align-items: center;">
+    <ion-card-title>{{item.libelle}}</ion-card-title>
+  </ion-card-header>
+</ion-card>
